@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bi(bli)oArch</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    /* Blue + White theme with CSS variables and accessible contrast */
+    :root {
+      --bg: #ffffff;
+      --surface: #f7fbff;
+      --text: #0b1a2b;
+      --muted: #5a6b83;
+      --border: #d9e6ff;
+
+      /* Blue palette */
+      --primary-50: #f0f7ff;
+      --primary-100: #e1efff;
+      --primary-200: #bfdcff;
+      --primary-300: #94c4ff;
+      --primary-400: #5fa6ff;
+      --primary-500: #2b88ff;
+      /* main */
+      --primary-600: #166fe0;
+      /* hover */
+      --primary-700: #0f56b6;
+      /* pressed */
+      --ring: rgba(43, 136, 255, .35);
+    }
+
+    /* Base reset */
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--text);
+      font: 16px/1.55 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      height: 80px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: saturate(140%) blur(6px);
+      background: transparent;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: .2px;
+      color: var(--primary-700)
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem
+    }
+
+    .nav a {
+      padding: .35rem .6rem;
+      border-radius: 6px;
+      color: var(--text)
+    }
+
+    .nav a.active {
+      background: var(--primary-50);
+      outline: 1px solid var(--primary-200)
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.25rem
+    }
+
+    /* Layout */
+    h1,
+    h2 {
+      margin: .25rem 0 .5rem
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem)
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem)
+    }
+
+    /* Cards and sections */
+    .grid {
+      display: grid;
+      gap: 1rem
+    }
+
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.1rem;
+      text-align: center;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      box-shadow: 0 1px 2px rgba(11, 26, 43, .06);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary-200);
+      box-shadow: 0 6px 18px rgba(11, 26, 43, .08);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: .7rem 1.1rem;
+      border-radius: 10px;
+      border: 1px solid var(--primary-500);
+      color: #fff;
+      background: linear-gradient(180deg, var(--primary-500), var(--primary-600));
+      box-shadow: 0 8px 20px rgba(43, 136, 255, .15);
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(180deg, var(--primary-600), var(--primary-700));
+      box-shadow: 0 10px 24px rgba(43, 136, 255, .22)
+    }
+
+    .btn:active {
+      transform: translateY(1px)
+    }
+
+    .btn.outline {
+      background: #fff;
+      color: var(--primary-600);
+      border: 1px solid var(--primary-300);
+    }
+
+    .btn.outline:hover {
+      background: var(--primary-50)
+    }
+
+    /* Inputs */
+    input,
+    select,
+    button {
+      font: inherit;
+    }
+
+    input[type="file"],
+    input[type="number"],
+    select {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: .5rem .6rem;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--primary-400);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* Sections */
+    .section {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 1.1rem 1.1rem;
+      box-shadow: 0 1px 2px rgba(11, 26, 43, .06);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 1rem;
+      text-align: center;
+      color: var(--muted);
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+
+    .started{
+        border: 3px solid rgb(51, 177, 255);
+        padding: 15px;
+        font-weight: 600;
+        transition-duration: .3s;
+        font-size: 20px;
+        border-radius: 10px;
+    }
+
+    .started:hover{
+        background: rgb(51, 177, 255);
+        color: #ffffff;
+    }
+    .phase-btn{
+      transition-duration: .3s;
+    }
+
+    .phase-btn:hover{
+      border: 2px solid rgb(50, 133, 185);
+    }
+
+    /* Responsive */
+    @media (max-width:900px) {
+      .grid.cols-3 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media (max-width:600px) {
+      .grid.cols-3 {
+        grid-template-columns: 1fr
+      }
+
+      .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 1rem;
+        top: 3.4rem;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: .5rem
+      }
+
+      .nav.show {
+        display: flex
+      }
+
+      .nav-toggle {
+        display: block
+      }
+    }
+
+    :where(a, button, input, select, .card, .btn):focus-visible {
+      outline: 2px solid #0b56c9;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(43, 136, 255, .35);
+    }
+
+    :where(a, button, input, select):focus {
+      scroll-margin: 120px
+    }
+  </style>
+</head>
+
+<body style="font-family: Verdana, sans-serif;">
+  <header class="header">
+    <a class="logo" href="index.html" style="font-size: 50px;">Arqave</a>
+    <nav class="nav">
+      <a class="active" href="index.html" style="font-size: 20px;">Home</a>
+      <a href="phase1.html" style="font-size: 20px;" class="phase-btn">Phase 1</a>
+    </nav>
+    <button class="nav-toggle" aria-label="menu">&#9776;</button>
+  </header>
+
+  <main class="container hero">
+    <img src="./bg.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: invert(20%);" alt="">
+    <h1 id="heading" style="color: white;">Welcome to</h1>
+    <img src="./biblio.png" alt="">
+    <a class="started" href="phase1.html" style="color: white; margin-left: 60px;">GET STARTED</a>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2025</small>
+  </footer>
+  <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>

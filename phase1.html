@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 1</title>
+  <style>
+    /* Blue + White theme with CSS variables and accessible contrast */
+    :root {
+      --bg: #ffffff;
+      --surface: #f7fbff;
+      --text: #0b1a2b;
+      --muted: #5a6b83;
+      --border: #d9e6ff;
+
+      /* Blue palette */
+      --primary-50: #f0f7ff;
+      --primary-100: #e1efff;
+      --primary-200: #bfdcff;
+      --primary-300: #94c4ff;
+      --primary-400: #5fa6ff;
+      --primary-500: #2b88ff;
+      /* main */
+      --primary-600: #166fe0;
+      /* hover */
+      --primary-700: #0f56b6;
+      /* pressed */
+      --ring: rgba(43, 136, 255, .35);
+    }
+
+    /* Base reset */
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--text);
+      font: 16px/1.55 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      height: 80px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: saturate(140%) blur(6px);
+      background: transparent;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: .2px;
+      color: var(--primary-700)
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem
+    }
+
+    .nav a {
+      padding: .35rem .6rem;
+      border-radius: 6px;
+      color: var(--text)
+    }
+
+    .nav a.active {
+      background: var(--primary-50);
+      outline: 1px solid var(--primary-200)
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.25rem
+    }
+
+    /* Layout */
+    h1,
+    h2 {
+      margin: .25rem 0 .5rem
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem)
+    }
+
+    .home-btn {
+      transition-duration: .3s;
+    }
+
+    .home-btn:hover {
+      border: 2px solid rgb(50, 133, 185);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      ;
+    }
+
+    .link-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem
+    }
+
+    .link-list a {
+      text-decoration: none;
+      color: black;
+      border: 3px solid rgb(55, 122, 163);
+      padding: 15px;
+      font-weight: 600;
+      transition-duration: .3s;
+      font-size: 20px;
+    }
+
+    .link-list a:hover {
+      background-color: rgb(55, 122, 163);
+      color: white;
+    }
+
+    .button {
+      height: 60px;
+      width: 300px;
+      position: relative;
+      background-color: transparent;
+      cursor: pointer;
+      border: 2px solid #b6701f;
+      overflow: hidden;
+      border-radius: 30px;
+      color: #333;
+      transition: all 0.5s ease-in-out;
+      font-weight: 300;
+      font-size: 20px;
+    }
+
+    .btn-txt {
+      z-index: 1;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .type1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: all 0.5s ease-in-out;
+      background-color: #b6701f;
+      border-radius: 30px;
+      visibility: hidden;
+      height: 10px;
+      width: 10px;
+      z-index: -1;
+    }
+
+    .button:hover {
+      box-shadow: 1px 1px 200px #b6701f;
+      color: #fff;
+      border: none;
+    }
+
+    .type1:hover::after {
+      visibility: visible;
+      transform: scale(100) translateX(2px);
+    }
+  </style>
+</head>
+
+<body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+  <header class="header">
+    <a class="logo" href="index.html" style="font-size: 50px;">Arqave</a>
+    <nav class="nav">
+      <a href="index.html" style="font-size: 20px;" class="home-btn">Home</a>
+      <a class="active" href="phase1.html" style="font-size: 20px;" class="phase-btn">Phase 1</a>
+    </nav>
+    <button class="nav-toggle" aria-label="menu">&#9776;</button>
+  </header>
+
+  <main class="container">
+    <div class="link-list">
+      <!-- From Uiverse.io by Gaurav-WebDev -->
+      <button class="button type1" onclick="window.location.href='pages/groups.html'">
+        <span class="btn-txt">Group Building</span>
+      </button>
+      <button class="button type1" onclick="window.location.href='pages/clustering.html'">
+        <span class="btn-txt">Cluster Analysis</span>
+      </button>
+      <button class="button type1" onclick="window.location.href='pages/pca.html'">
+        <span class="btn-txt" >PCA Analysis</span>
+      </button>
+      <button class="button type1" onclick="window.location.href='pages/plotting.html'">
+        <span class="btn-txt">Plotting & Styles</span>
+      </button>
+      <button class="button type1" onclick="window.location.href='pages/pdf-extract.html'">
+        <span class="btn-txt">Extract Data from PDF</span>
+      </button>
+      <button class="button type1" onclick="window.location.href='pages/image-analysis.html'">
+        <span class="btn-txt">Image Analysis</span>
+      </button>
+    </div>
+  </main>
+
+  <footer class="footer"><small>&copy; 2025</small></footer>
+  <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>
